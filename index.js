@@ -4,6 +4,11 @@ const app = express()
 require('dotenv').config()
 const path = require('path');
 const { MongoClient } = require('mongodb')
+const ejs = require('ejs')
+const nodemailer = require('nodemailer')
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const csrf = require('csurf')
 
 app.use(express.static(path.join(__dirname, '/public')))
 
@@ -11,16 +16,36 @@ app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'))
 app.set('trust proxy', true);
+app.use(cookieParser());
 
-// app.use((req, res, next) => {
-//   const host = req.hostname; // например: musor.example.com
-//   if (host !== 'musor.example.com') {
-//     return res.status(403).send('Access denied'); // не обрабатываем другие хосты
-//   }
-//   next();
-// });
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true } // ставь true при HTTPS
+}));
+
+app.use((req, res, next) => {
+  const host = req.hostname; // например: musor.example.com
+  if (host !== 'musor.totalvtor.od.ua') {
+    return res.status(404).send('Not found'); // не обрабатываем другие хосты
+  }
+  res.locals.csrfToken = req.csrfToken();
+  next();
+});
+
+app.use((req, res) => {
+  res.status(404).render('404', { url: req.originalUrl });
+});
+app.use(csrf()); // CSRF защита
 
 let database = new MongoClient(`mongodb+srv://admin:${process.env.MONGODB_TOKEN}@cluster0.z32dg.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`)
+
+
+
+
+
+
 async function connect() {
   try {
     await database.connect();
@@ -30,6 +55,42 @@ async function connect() {
     console.error('Ошибка подключения к базе:', err);
   }
 }
+
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS // используй пароль приложения
+    }
+});
+
+function formatDate () {
+    const date = new Date()
+    const pad = (n) => n.toString().padStart(2, '0');
+    const hours = pad(date.getHours());
+    const minutes = pad(date.getMinutes());
+    const day = pad(date.getDate());
+    const month = pad(date.getMonth() + 1);
+    const year = date.getFullYear();
+    return `${hours}:${minutes}, ${day}.${month}.${year}`;
+};
+
+async function sendNewBidEmail(data) {
+    const templatePath = path.join(__dirname, 'views', 'mail', 'newBid.ejs');
+    const html = await ejs.renderFile(templatePath, data);
+
+    await transporter.sendMail({
+        from: 'Тотал Втор <total.vtor.manager@gmail.com>',
+        to: 'jamssonbui@gmail.com',
+        subject: 'Нова заявка',
+        html: html
+    });
+}
+
+
+
+
+
 
 connect()
 
@@ -57,8 +118,7 @@ app.post('/newBid', async (req, res) => {
     res.status(200).send('New bid success')
     await collection.insertOne({ ip, date: now });
 
-    // Здесь можно отправлять email или сохранять заявку
-    // res.send('✅ Заявка прийнята!');
+    sendNewBidEmail({ timeFormatted: formatDate() })
 })
 
 app.listen(process.env.PORT || 3000)
