@@ -1,0 +1,128 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/f27517934e.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="public/css/main.css">
+</head>
+<body>
+    <div class="main">
+        <!-- <div class="half-overlay">
+            <div class="half-overlay-left-image"></div>
+            <div class="half-overlay-central-icon">
+                <i class="fa-solid fa-recycle"></i>
+            </div>
+            <div class="half-overlay-right-image"></div>
+        </div> -->
+        <header>
+            
+            <nav>
+                <ul>
+                    <li><a href="/" class="mainPage">Головна</a></li>
+                    <li><a href="/services">Послуги</a></li>
+                    <li><a href="/aboutus">Про нас</a></li>
+                    <li>
+                        <div class="btn-group" style="margin-right: 40px;">
+                            <a href="/contacts" class="btn-left">Контакти та адреси</a>
+                            <a href="/price" class="btn-right">Ціни</a>
+                        </div>
+                    </li>
+                    <li><a href="mailto:total.vtor.manager@gmail.com">total.vtor.manager@gmail.com</a></li>
+                    <li><a href="/" class="zamovyty-vyviz">Замовити вивіз</a></li>
+                </ul>
+            </nav>  
+        </header>
+        <div class="gradient">
+            <div class="logo-container">
+                <img src="public/img/logo1.png" alt="Логотип" class="logo">
+                <div class="company-name">
+                    Тотал Втор
+                </div>
+            </div>
+            <div class="layoutImage"></div>
+            
+        </div>
+        <section class="content">
+            <h1 style="margin-top: 100px;">Купуємо лом чорного та кольорового металу у приватних осіб і підприємств в Одесі та Одеській області. А також вторсировину:</h1>
+            <ul style="color: red;">
+                <li>Макулатуру</li>
+                <li>ПЕТ пляшку</li>
+                <li>Плівку (поліетилен)</li>
+                <li>Склотару</li>
+            </ul>
+            <p>
+                Наша компанія займається закупівлею чорного, кольорового металобрухту та вторсировини у приватних та юридичних осіб. Ми пропонуємо вигідні умови та оперативне обслуговування, гарантуючи справедливу і прозору оцінку вартості вашого металу чи вторсировини.
+            </p>
+            <p>
+                Ми надаємо професійні послуги з вивозу та купівлі металу або вторсировини. Наші спеціалісти оперативно виїжджають на вказане місце — чи це квартира, будинок або інша локація. На місці ми проводимо зважування, оцінюємо вартість і здійснюємо розрахунок з клієнтом. Також беремо на себе всю логістику, включаючи завантаження та транспортування.
+            </p>
+            <h2>Юридичним особам</h2>
+            <p>Для підприємств виконуємо демонтаж будь-яких металоконструкцій, різного обладнання та порізку ємностей.
+
+            Також закуповуємо металеві відходи від різного виробництва:</p>
+            <ul>
+                <li>Металеву стружку</li>
+                <li>Висічку листового металу</li>
+                <li>Металеві пакувальні стрічки</li>
+                <li>Відходи м’якої в’язальної проволоки</li>
+                <li>Відпрацьовані троси</li>
+            </ul>
+            <p>Оперативно здійснюємо оформлення купівлі-продажу металобрухту або вторсировини юридичним особам.
+
+Доставка чорного лому (кольорових металів) здійснюється нашим автотранспортом на спеціалізовану площадку, де металобрухт зважується на повірених вагах і вивантажується спецтехнікою (фукси, магніти).</p>
+            <div class="table-container">
+                <h2 style="color: red;">Ціни на лом та вторсировину в Одесі</h2>
+                <p style="color: red;">Оптові ціни уточнюйте за телефоном</p>
+                <p>Актуальність цін на <span id="dateParagraph"></span></p>
+                <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Тип лому</th>
+                            <th>Ціна</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% data.forEach(item => { %>
+                            <tr>
+                                <td><%= item.name %></td>
+                                <td><%= item.price %></td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+            <div class="container">
+                <h2 class="title">Чому ви повинні здати лом/вторсировину або замовити контейнер у нас</h2>
+                <div class="icons-grid">
+                    <div class="icon-item">
+                        <i class="fa-regular fa-thumbs-up"></i>
+                        <p>Заслужили довіру клієнтів</p>
+                    </div>
+                    <div class="icon-item">
+                        <i class="fas fa-balance-scale"></i>
+                        <p>Розрахунок і зважування на місці</p>
+                    </div>
+                    <div class="icon-item">
+                        <i class="fa-solid fa-truck-fast"></i>
+                        <p>Власний автопарк</p>
+                    </div>
+                    <div class="icon-item">
+                        <i class="fa-brands fa-codepen"></i>
+                        <p>Контейнери різних розмірів</p>
+                    </div>
+                    <div class="icon-item">
+                        <i class="fa-solid fa-wallet"></i>
+                        <p>Відмінна ціна</p>
+                    </div>
+                    <div class="icon-item">
+                        <i class="fa-solid fa-hand-holding-dollar"></i>
+                        <p>Своєчасний розрахунок</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
