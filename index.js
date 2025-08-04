@@ -7,7 +7,6 @@ const { MongoClient } = require('mongodb')
 const ejs = require('ejs')
 const nodemailer = require('nodemailer')
 const cookieParser = require('cookie-parser');
-const session = require('express-session');
 const csrf = require('csurf')
 
 app.use(express.static(path.join(__dirname, '/public')))
@@ -18,26 +17,22 @@ app.set('views', path.join(__dirname, 'views'))
 app.set('trust proxy', true);
 app.use(cookieParser());
 
-app.use(session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: true } // ставь true при HTTPS
-}));
-
+app.use(csrf({ cookie: {
+    httpOnly: true,
+    secure: true,       
+    sameSite: 'lax'     
+  }})); // CSRF защита
 app.use((req, res, next) => {
   const host = req.hostname; // например: musor.example.com
   if (host !== 'musor.totalvtor.od.ua') {
     return res.status(404).send('Not found'); // не обрабатываем другие хосты
   }
-  res.locals.csrfToken = req.csrfToken();
   next();
 });
 
 app.use((req, res) => {
   res.status(404).render('404', { url: req.originalUrl });
 });
-app.use(csrf()); // CSRF защита
 
 let database = new MongoClient(`mongodb+srv://admin:${process.env.MONGODB_TOKEN}@cluster0.z32dg.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`)
 
@@ -98,7 +93,7 @@ const _db = database.db('main');
 const collection = _db.collection('ip-submissions');
 
 app.get('/', (req, res) => {
-    res.render('musor')
+    res.render('musor', { csrfToken: req.csrfToken() })
 })
 
 app.post('/newBid', async (req, res) => {
