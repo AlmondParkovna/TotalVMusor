@@ -30,9 +30,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use((req, res) => {
-  res.status(404).render('404', { url: req.originalUrl });
-});
+
 
 let database = new MongoClient(`mongodb+srv://admin:${process.env.MONGODB_TOKEN}@cluster0.z32dg.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`)
 
@@ -115,6 +113,10 @@ app.post('/newBid', async (req, res) => {
 
     sendNewBidEmail({ timeFormatted: formatDate() })
 })
+
+app.use((req, res) => {
+  res.status(404).render('404', { url: req.originalUrl });
+});
 
 app.listen(process.env.PORT || 3000)
 console.log(process.env.PORT || 3000)
