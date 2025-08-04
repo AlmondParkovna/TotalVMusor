@@ -61,5 +61,5 @@ app.post('/newBid', async (req, res) => {
     // res.send('✅ Заявка прийнята!');
 })
 
-app.listen(3000)
-console.log(3000)
+app.listen(process.env.PORT || 3000)
+console.log(process.env.PORT || 3000)
