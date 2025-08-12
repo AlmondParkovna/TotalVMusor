@@ -98,7 +98,7 @@ app.get('/', (req, res) => {
 })
 
 app.post('/newBid', upload.none(), async (req, res) => {
-    const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+    const ip = req.ip || req.socket.remoteAddress
     const now = new Date();
     const twoDaysAgo = new Date(now.getTime() - 2 * 24 * 60 * 60 * 1000);
     
