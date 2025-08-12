@@ -24,13 +24,14 @@ app.use(csrf({ cookie: {
     secure: true,       
     sameSite: 'lax'     
   }})); // CSRF защита
-// app.use((req, res, next) => {
-//   const host = req.hostname; // например: musor.example.com
-//   if (host !== 'musor.totalvtor.od.ua') {
-//     return res.status(404).send('Not found'); // не обрабатываем другие хосты
-//   }
-//   next();
-// });
+app.use((req, res, next) => {
+  const host = req.hostname; // например: musor.example.com
+  if (host !== 'musor.totalvtor.od.ua') {
+    return res.status(404).send('Not found'); // не обрабатываем другие хосты
+  }
+  next();
+});
+
 
 
 
@@ -59,8 +60,7 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-function formatDate () {
-    const date = new Date()
+function formatDate (date) {
     const pad = (n) => n.toString().padStart(2, '0');
     const hours = pad(date.getHours());
     const minutes = pad(date.getMinutes());
@@ -76,7 +76,7 @@ async function sendNewBidEmail(data) {
 
     await transporter.sendMail({
         from: 'Тотал Втор <total.vtor.manager@gmail.com>',
-        to: 'jamssonbui@gmail.com',
+        to: process.env.TO_EMAIL,
         subject: 'Нова заявка',
         html: html
     });
@@ -123,12 +123,14 @@ app.post('/newBid', upload.none(), async (req, res) => {
     const containerPrice = containerSizeString[2].slice(1, -1)
 
 
-    sendNewBidEmail({ timeFormatted: formatDate(), userName, userPhone, userHrefPhone, userDistrict, userAdress, containerSize: containerNewSize, price: containerPrice })
+    sendNewBidEmail({ timeFormatted: formatDate(new Date()), userName, userPhone, userHrefPhone, userDistrict, userAdress, containerSize: containerNewSize, price: containerPrice })
 })
 
 app.use((req, res) => {
   res.status(404).render('404', { url: req.originalUrl });
 });
 
-app.listen(process.env.PORT || 3000)
-console.log(process.env.PORT || 3000)
+const port = process.env.PORT || 3001
+
+app.listen(port)
+console.log('Listening musor on ' + port)
