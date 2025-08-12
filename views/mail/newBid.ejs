@@ -32,15 +32,15 @@
     font-size: 1rem;
     line-height: 1.6;
   ">
-    <p style="margin: 0 0 12px;"><strong style="color: #4a5568;">Ім’я:</strong> Іван</p>
+    <p style="margin: 0 0 12px;"><strong style="color: #4a5568;">Ім’я:</strong> <%= userName %></p>
     <p style="margin: 0 0 12px;">
       <strong style="color: #4a5568;">Телефон:</strong> 
-      <a href="tel:+380991234567" style="color: #3182ce; text-decoration: none;">+380991234567</a>
+      <a href="tel:<%= userHrefPhone %>" style="color: #3182ce; text-decoration: none;"> <%= userPhone %></a>
     </p>
-    <p style="margin: 0 0 12px;"><strong style="color: #4a5568;">Район:</strong> Центр</p>
-    <p style="margin: 0 0 12px;"><strong style="color: #4a5568;">Адреса:</strong> Катерининська 41</p>
-    <p style="margin: 0 0 12px;"><strong style="color: #4a5568;">Заявлена ціна:</strong> 3500 грн</p>
-    <p style="margin: 0;"><strong style="color: #4a5568;">Розмір контейнера:</strong> 8 м³</p>
+    <p style="margin: 0 0 12px;"><strong style="color: #4a5568;">Район:</strong> <%= userDistrict %></p>
+    <p style="margin: 0 0 12px;"><strong style="color: #4a5568;">Адреса:</strong> <%= userAdress %></p>
+    <p style="margin: 0 0 12px;"><strong style="color: #4a5568;">Заявлена ціна:</strong> <%= price %>грн</p>
+    <p style="margin: 0;"><strong style="color: #4a5568;">Розмір контейнера:</strong> <%= containerSize %></p>
   </div>
 
   <p style="

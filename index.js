@@ -1,13 +1,15 @@
 const bodyParser = require('body-parser');
 const express = require('express')
 const app = express()
-require('dotenv').config()
+require('dotenv').config({ quiet: true })
 const path = require('path');
 const { MongoClient } = require('mongodb')
 const ejs = require('ejs')
 const nodemailer = require('nodemailer')
 const cookieParser = require('cookie-parser');
 const csrf = require('csurf')
+const multer = require('multer');
+const upload = multer();
 
 app.use(express.static(path.join(__dirname, '/public')))
 
@@ -22,13 +24,13 @@ app.use(csrf({ cookie: {
     secure: true,       
     sameSite: 'lax'     
   }})); // CSRF защита
-app.use((req, res, next) => {
-  const host = req.hostname; // например: musor.example.com
-  if (host !== 'musor.totalvtor.od.ua') {
-    return res.status(404).send('Not found'); // не обрабатываем другие хосты
-  }
-  next();
-});
+// app.use((req, res, next) => {
+//   const host = req.hostname; // например: musor.example.com
+//   if (host !== 'musor.totalvtor.od.ua') {
+//     return res.status(404).send('Not found'); // не обрабатываем другие хосты
+//   }
+//   next();
+// });
 
 
 
@@ -91,14 +93,19 @@ const _db = database.db('main');
 const collection = _db.collection('ip-submissions');
 
 app.get('/', (req, res) => {
-    res.render('musor', { csrfToken: req.csrfToken() })
+    const token = req.csrfToken()
+    res.render('musor', { csrfToken: token })
 })
 
-app.post('/newBid', async (req, res) => {
+app.post('/newBid', upload.none(), async (req, res) => {
     const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
     const now = new Date();
     const twoDaysAgo = new Date(now.getTime() - 2 * 24 * 60 * 60 * 1000);
+    
 
+    const { userName, userPhone, userDistrict, userAdress, userSize } = req.body
+
+    const userHrefPhone = userPhone.replace(/[-()\s]/g, '')
 
     const recent = await collection.findOne({
         ip,
@@ -111,7 +118,12 @@ app.post('/newBid', async (req, res) => {
     res.status(200).send('New bid success')
     await collection.insertOne({ ip, date: now });
 
-    sendNewBidEmail({ timeFormatted: formatDate() })
+    const containerSizeString = userSize.split(' ')
+    const containerNewSize = containerSizeString.slice(0, 2).join(' ')
+    const containerPrice = containerSizeString[2].slice(1, -1)
+
+
+    sendNewBidEmail({ timeFormatted: formatDate(), userName, userPhone, userHrefPhone, userDistrict, userAdress, containerSize: containerNewSize, price: containerPrice })
 })
 
 app.use((req, res) => {

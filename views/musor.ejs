@@ -4,106 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Тотал Втор - Вивіз сміття в контейнерах 8, 15, 30 кубів</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/tailwind.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="/img/logo1.png">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
-        
-        body {
-            font-family: 'Montserrat', sans-serif;
-        }
-        
-        .gradient-bg {
-            background: linear-gradient(135deg, #2e7d32, #4caf50);
-        }
-        
-        .container-pattern {
-            background-image: url('https://zavodperm.ru/storage/photo/resized/xy_800x600/a/mgghdgj56664zgl_1020dad6.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-color: rgba(255,255,255,0.9);
-            background-blend-mode: overlay;
-        }
-        
-        .hero-image-container {
-            position: relative;
-        }
-        
-        .hero-icon {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-        
-        .impact-box {
-            transition: all 0.3s ease;
-        }
-        
-        .impact-box:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(21, 255, 0, 0.2);
-        }
-        
-        .container-card {
-            transition: all 0.3s ease;
-        }
-        
-        .container-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-        
-        .mobile-menu {
-            transition: all 0.3s ease;
-            max-height: 0;
-            overflow: hidden;
-        }
-        
-        .mobile-menu.active {
-            max-height: 500px;
-        }
-
-        @media (max-width: 767.9px) {
-            .mobile-menu .flex.w-full {
-                width: 80%;
-                margin: 0 auto;
-            }
-            .mobile-menu a:not(.gradient-bg):not(.bg-black) {
-                width: 80%;
-                text-align: center;
-                padding: 12px 0;
-            }
-
-            .desktop-menu {
-                display: none;
-                opacity: 0;
-            }
-            
-            
-        }
-
-        /* Modal animations */
-        #orderModal, #verifyModal, #successMessage {
-            transition: opacity 0.3s ease;
-        }
-        
-        .hidden {
-            display: none;
-            opacity: 0;
-        }
-    </style>
 </head>
 <body class="bg-white">
     <!-- Header/Navigation -->
@@ -120,14 +24,19 @@
                 
                 <!-- Desktop Navigation -->
                 <nav class="desktop-menu md:flex items-center space-x-4">
+                    <a href="tel:+380630235403" class="telephones font-medium hover:text-green-500 transition px-4"><i class="fa-solid fa-phone fa-shake"></i> +380 (63) 023 54 03</a>
+                    <a href="tel:+380672873438" class="telephones font-medium hover:text-green-500 transition px-4"><i class="fa-solid fa-phone fa-shake"></i> <span>+380 (67) 287 34 38</span></a>
                     <a href="#home" class="font-medium hover:text-green-500 transition px-4">Головна</a>
-                    <a href="#about" class="font-medium hover:text-green-500 transition px-4">Про нас</a>
+                    <a href="#about" class="aboutus font-medium hover:text-green-500 transition px-4"><i class="fa-solid fa-phone fa-shake"></i> Про нас</a>
                     <a href="#services" class="font-medium hover:text-green-500 transition px-4">Калькулятор</a>
                     <div class="flex">
                         <a href="#process" class="px-4 py-2 bg-black text-white font-medium hover:bg-gray-800 transition" style="clip-path: polygon(0 0, 85% 0, 100% 100%, 0% 100%)">Вивіз</a>
                         <a href="#prices" class="px-4 py-2 gradient-bg text-white font-medium hover:opacity-90 transition -ml-1" style="clip-path: polygon(0 0, 100% 0, 100% 100%, 11% 100%);">Тарифи</a>
                     </div>
                 </nav>
+
+                <a href="tel:+380630235403" class="md:hidden telephones-mobile-notmain font-normal text-xs hover:text-green-500 transition px-4"><i class="fa-solid fa-phone fa-shake"></i> +380 (63) 023 54 03</a>
+                <a href="tel:+380672873438" class="md:hidden telephones-mobile font-normal text-xs hover:text-green-500 transition px-4"><i class="fa-solid fa-phone fa-shake"></i> +380 (67) 287 34 38</a>
                 
                 <!-- Mobile Menu Button -->
                 <button id="mobile-menu-button" class="md:hidden text-gray-700">
@@ -163,7 +72,7 @@
                          class="w-full h-full object-fill">
                 </div>
                 <div class="rounded-xl overflow-hidden shadow-lg h-64">
-                    <img src="/img/photo_2025-07-31_18-30-07.jpg" 
+                    <img src="/img/IMG_5822.png" 
                          alt="Metal containers in urban settings" 
                          class="w-full h-full object-fill">
                 </div>
@@ -186,8 +95,8 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div class="bg-white p-6 rounded-xl shadow-md">
                         <img src="/img/container-right.jpg" 
-                             alt="8m³ boat container" 
-                             class="w-full h-48 object-cover rounded-lg mb-4">
+                             alt="8м³ контейнер-лодка" 
+                             class="w-full h-48 object-contain rounded-lg mb-4">
                         <h4 class="font-bold mb-2">Контейнер-Лодка 8м³</h4>
                         <ul class="space-y-2 text-gray-600">
                             <li><strong>Розмір:</strong> <a href="/img/drawings/8m3.jpg" style="text-decoration: underline; color: rgb(12, 123, 0);">Креслення</a></li>
@@ -197,8 +106,8 @@
                     </div>
                     <div class="bg-white p-6 rounded-xl shadow-md">
                         <img src="/img/container15m3.jpg" 
-                             alt="15m³ container" 
-                             class="w-full h-48 object-cover rounded-lg mb-4">
+                             alt="15м³ контейнер" 
+                             class="w-full h-48 object-contain rounded-lg mb-4">
                         <h4 class="font-bold mb-2">Контейнер 15м³</h4>
                         <ul class="space-y-2 text-gray-600">
                             <li><strong>Розмір:</strong> <a href="/img/drawings/15m3.jpg" style="text-decoration: underline; color: rgb(12, 123, 0);">Креслення</a></li>
@@ -208,8 +117,8 @@
                     </div>
                     <div class="bg-white p-6 rounded-xl shadow-md">
                         <img src="/img/container30m3.jpg" 
-                             alt="30m³ container" 
-                             class="w-full h-48 object-cover rounded-lg mb-4">
+                             alt="30м³ контейнер" 
+                             class="w-full h-48 object-contain rounded-lg mb-4">
                         <h4 class="font-bold mb-2">Контейнер 30м³</h4>
                         <ul class="space-y-2 text-gray-600">
                             <li><strong>Розмір:</strong> <a href="/img/drawings/30m3.jpg" style="text-decoration: underline; color: rgb(12, 123, 0);">Креслення</a></li>
@@ -239,6 +148,9 @@
                     <li>Вивезення будівельного та побутового сміття</li>
                     <li>Обслуговування фізичних і юридичних осіб</li>
                     <li>Прозорі умови співпраці</li>
+                    <li class="xl:hidden aboutus-phones">Зв'язатись з нами ви можете за телефонами:</li>
+                    <a href="tel:+380630235403" class="xl:hidden aboutus-phones block mt-2 text-green-500"><i class="fa-solid fa-phone fa-shake"></i> +380 (63) 023 54 03</a>
+                    <a href="tel:+380672873438" class="xl:hidden aboutus-phones block text-green-500"><i class="fa-solid fa-phone fa-shake"></i> +380 (67) 287 34 38</a>
                 </ul>
             </div>
             
@@ -325,7 +237,7 @@
                     <div class="gradient-bg p-4 rounded-lg mb-4 text-center">
                         <i class="fas fa-dumpster text-white text-4xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">15 m³ Container</h3>
+                    <h3 class="text-xl font-bold mb-2">15 м³ Container</h3>
                     <p class="text-gray-600 mb-4">Our most popular size for medium-sized projects and businesses.</p>
                     <ul class="space-y-2 mb-6">
                         <li class="flex items-center">
@@ -343,7 +255,7 @@
                     <div class="gradient-bg p-4 rounded-lg mb-4 text-center">
                         <i class="fas fa-truck text-white text-4xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">30 m³ Container</h3>
+                    <h3 class="text-xl font-bold mb-2">30 м³ Container</h3>
                     <p class="text-gray-600 mb-4">For large-scale construction projects and industrial waste.</p>
                     <ul class="space-y-2 mb-6">
                         <li class="flex items-center">
@@ -369,19 +281,19 @@
 
                 // Base prices per district
                 const basePrices = {
-                    'Центр': [3500, 5000, 7000],
-                    'Черемушки': [3500, 5000, 7000],
-                    'Слобідка': [3500, 5000, 7000],
-                    'Ленпас': [3500, 5000, 7000],
-                    'Таїрове': [3500, 5000, 7000],
-                    'Фонтан': [3500, 5000, 7000],
+                    'Центр': [3600, 5500, 7500],
+                    'Черемушки': [3600, 5500, 7000],
+                    'Слобідка': [3600, 5500, 7500],
+                    'Ленпас': [3600, 5500, 7500],
+                    'Таїрове': [3600, 5500, 7500],
+                    'Фонтан': [3600, 5500, 7500],
 
-                    'Совіньйон': [3800, 5500, 8000],
-                    'Пос. Котовського': [3800, 5500, 8000],
-                    'Крижанівка': [3800, 5500, 8000],
-                    'Фонтанка': [3800, 5500, 8000],
+                    'Совіньйон': [4200, 6000, 8000],
+                    'Пос. Котовського': [4200, 6000, 8000],
+                    'Крижанівка': [4200, 6000, 8000],
+                    'Фонтанка': [4200, 6000, 8000],
 
-                    'Чорноморськ': [5000, 6500, 9000]
+                    'Чорноморськ': [5500, 7000, 9000]
                 };
                 let basePrice
                 let districtOptions = []
@@ -560,7 +472,7 @@
                          class="w-full h-96 object-cover rounded-lg shadow-lg">
                 </div>
                 <div class="w-full md:w-1/2 md:pl-8">
-                    <h3 class="text-2xl font-bold mb-4">8m³ Container</h3>
+                    <h3 class="text-2xl font-bold mb-4">8м³ Container</h3>
                     <p class="text-gray-600 mb-4">Perfect for small renovation projects or household cleanouts.</p>
                     <ul class="space-y-2">
                         <li class="flex items-center">
@@ -582,7 +494,7 @@
                          class="w-full h-96 object-cover rounded-lg shadow-lg">
                 </div>
                 <div class="w-full md:w-1/2 order-2 md:order-1 md:pr-8 mb-8 md:mb-0">
-                    <h3 class="text-2xl font-bold mb-4">15m³ Container</h3>
+                    <h3 class="text-2xl font-bold mb-4">15м³ Container</h3>
                     <p class="text-gray-600 mb-4">Our most popular size for medium-sized projects and businesses.</p>
                     <ul class="space-y-2">
                         <li class="flex items-center">
@@ -604,7 +516,7 @@
                          class="w-full h-96 object-cover rounded-lg shadow-lg">
                 </div>
                 <div class="w-full md:w-1/2 md:pl-8">
-                    <h3 class="text-2xl font-bold mb-4">30m³ Container</h3>
+                    <h3 class="text-2xl font-bold mb-4">30м³ Container</h3>
                     <p class="text-gray-600 mb-4">For large-scale construction projects and industrial waste.</p>
                     <ul class="space-y-2">
                         <li class="flex items-center">
@@ -632,47 +544,47 @@
                     </div>
                     <p class="text-gray-400 mb-4">Професійне вивезення сміття для більш чистого майбутнього</p>
                     <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-white transition">
+                        <a href="tel:+380630235403" class="text-gray-400 hover:text-white transition">
                             <i class="fas fa-phone fa-shake"></i>
                         </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition">
+                        <a href="mailto:manager@totalvtor.od.ua" class="text-gray-400 hover:text-white transition">
                             <i class="fas fa-envelope fa-bounce"></i>
                         </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition">
+                        <a href="https://www.totalvtor.od.ua/telegram" class="text-gray-400 hover:text-white transition">
                             <i class="fab fa-telegram"></i>
                         </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition">
+                        <a href="https://www.tiktok.com/@metallolom_od?_t=ZM-8sqTkTGbXoj&_r=1" class="text-gray-400 hover:text-white transition">
                             <i class="fab fa-tiktok"></i>
                         </a>
                     </div>
                 </div>
                 
                 
-                <div>
+                <!-- <div>
                     <h3 class="text-lg font-bold mb-4">Компанія</h3>
                     <ul class="space-y-2">
                         <li><a href="#" class="text-gray-400 hover:text-white transition">Наша історія</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-white transition">Новини</a></li>
                     </ul>
-                </div>
+                </div> -->
                 
             </div>
             
-            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+            <!-- <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
                 <p class="text-gray-400 mb-4 md:mb-0">© 2023 Тотал Втор. All rights reserved.</p>
                 <div class="flex space-x-6">
                     <a href="#" class="text-gray-400 hover:text-white transition">Sitemap</a>
                     <a href="#" class="text-gray-400 hover:text-white transition">FAQ</a>
                 </div>
-            </div>
+            </div> -->
         </div>
     </footer>
 
     <!-- Order Modal -->
-    <div id="orderModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+    <div id="orderModal" class="fixed inset-0 bg-black/10 backdrop-blur-sm flex items-center justify-center z-50 hidden">
         <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4">
             <div class="flex justify-between items-center mb-6">
-                <h3 class="text-2xl font-bold">Order Container</h3>
+                <h3 class="text-2xl font-bold">Замовлення контейнеру</h3>
                 <button id="closeModal" class="text-gray-500 hover:text-gray-700">
                     <i class="fas fa-times"></i>
                 </button>
@@ -683,23 +595,32 @@
                 <div class="space-y-4">
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">Ім'я</label>
-                        <input type="text" required class="w-full px-4 py-2 border border-gray-300 rounded-md">
+                        <input name="userName" type="text" required class="w-full px-4 py-2 border border-gray-300 rounded-md">
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Електронна пошта</label>
-                        <input type="email" required class="w-full px-4 py-2 border border-gray-300 rounded-md">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Номер телефону</label>
+                        <input 
+                            name="userPhone"
+                            type="tel" 
+                            id="phone" 
+                            required 
+                            placeholder="+38 (___) ___-__-__"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-md"
+                            maxlength="19"
+                            minlength="19"
+                        >
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">Район</label>
-                        <select id="modalDistrict" class="modalDistrict w-full px-4 py-2 border border-gray-300 rounded-md bg-gray-100"></select>
+                        <select name="userDistrict" id="modalDistrict" class="modalDistrict w-full px-4 py-2 border border-gray-300 rounded-md bg-gray-100"></select>
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">Вулиця</label>
-                        <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-md bg-gray-100">
+                        <input name="userAdress" required type="text" class="w-full px-4 py-2 border border-gray-300 rounded-md bg-gray-100">
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">Розмір контейнеру</label>
-                        <input type="text" id="modalSize" readonly class="w-full px-4 py-2 border border-gray-300 rounded-md bg-gray-100">
+                        <input name="userSize" type="text" id="modalSize" readonly class="w-full px-4 py-2 border border-gray-300 rounded-md bg-gray-100">
                     </div>
                     <div class="mt-4">
                         <label class="inline-flex items-center">
@@ -764,7 +685,7 @@
             </div>
             <h3 class="text-2xl font-bold mb-4">Упс...</h3>
             <p class="text-gray-600 mb-6">Ви нещодавно відправляли запит на вивезення, дочекайтесь його виконання будь ласка</p>
-            <p class="text-gray-600 mb-6 font-bold">Якщо вам потрібно декілька контейнерів - будь ласка зв'яжіться з нашим менеджером, клацніть <a href="#" class="underline text-red-500">тут</a></p>
+            <p class="text-gray-600 mb-6 font-bold">Якщо вам потрібно декілька контейнерів - будь ласка зв'яжіться з нашим менеджером, клацніть <a href="tel:+380630235403" class="underline text-red-500">тут</a></p>
             <button id="closeError" class="px-6 py-2 gradient-bg text-white rounded-md font-medium hover:opacity-90 transition">
                 Добре
             </button>
@@ -791,11 +712,68 @@
         const modalDistrict = document.querySelector('.modalDistrict');
         const verificationCode = document.getElementById('verificationCode');
         const codeError = document.getElementById('codeError');
+        const phoneInput = document.getElementById('phone');
         
         // let attempts = 0;
         // const correctCode = '1111';
 
         // Open order modal when clicking "Обрати"
+
+        phoneInput.addEventListener('input', function(e) {
+            let digits = this.value.replace(/\D/g, '');
+
+            if (digits.startsWith('38')) {
+                digits = digits.substring(2);
+            }
+
+            digits = digits.substring(0, 10);
+
+            let formatted = '';
+            if (digits.length > 0) {
+                formatted = '+38 (';
+
+                if (digits.length >= 3) {
+                formatted += digits.substring(0, 3) + ') ';
+                if (digits.length >= 6) {
+                    formatted += digits.substring(3, 6) + '-';
+                    if (digits.length >= 8) {
+                    formatted += digits.substring(6, 8) + '-';
+                    formatted += digits.substring(8, 10);
+                    } else {
+                    formatted += digits.substring(6, 8);
+                    }
+                } else {
+                    formatted += digits.substring(3);
+                }
+                } else {
+                formatted += digits;
+                }
+            }
+            this.value = formatted;
+        });
+
+            // Обработка Backspace и Delete для перескакивания через разделители
+        phoneInput.addEventListener('keydown', function(e) {
+            const pos = this.selectionStart;
+            const val = this.value;
+
+            // Клавиша Backspace
+            if (e.key === 'Backspace' && pos > 0) {
+                // Если символ слева — разделитель, прыгаем через него
+                if ([' ', '(', ')', '-'].includes(val[pos - 1])) {
+                e.preventDefault();
+                this.setSelectionRange(pos - 1, pos - 1);
+                }
+            }
+
+            // Клавиша Delete
+            if (e.key === 'Delete') {
+                if (pos < val.length && [' ', '(', ')', '-'].includes(val[pos])) {
+                    e.preventDefault();
+                    this.setSelectionRange(pos + 1, pos + 1);
+                }
+            }
+        });
         document.querySelectorAll('[id^="price"]').forEach(priceEl => {
             // const containerSize = priceEl.id.replace('price', '').replace('m3', '');
             const containerSize = priceEl.id.replace('price', '').replace('m3', '');
@@ -805,30 +783,42 @@
                 districtOptions.forEach(o => {
                     modalDistrict.appendChild(o.cloneNode(true))
                 })
-                modalSize.value = `${containerSize} m³ (${basePrice[containerSize === "8" ? 0 : containerSize === "15" ? 1 : 2]})`;
+                modalSize.value = `${containerSize} м³ (${basePrice[containerSize === "8" ? 0 : containerSize === "15" ? 1 : 2]})`;
                 orderModal.classList.remove('hidden');
 
                 modalDistrict.addEventListener('change', () => {
-                    modalSize.value = `${containerSize} m³ (${basePrices[modalDistrict.value][containerSize === "8" ? 0 : containerSize === "15" ? 1 : 2]})`
+                    modalSize.value = `${containerSize} м³ (${basePrices[modalDistrict.value][containerSize === "8" ? 0 : containerSize === "15" ? 1 : 2]})`
                 })
             });
         });
+
+
 
         closeModal.addEventListener('click', () => orderModal.classList.add('hidden'));
         // closeVerifyModal.addEventListener('click', () => verifyModal.classList.add('hidden'));
         closeSuccess.addEventListener('click', () => successMessage.classList.add('hidden'));
         closeError.addEventListener('click', () => errorMessage.classList.add('hidden'));
+        const csrfToken = document.querySelector('input[name="_csrf"]').value;
 
         // // Handle order form submission
         orderForm.addEventListener('submit', async (e) => {
             e.preventDefault();
+            const phone = orderForm.userPhone.value;
+            if (phone.length !== 19) {
+                alert('Номер телефону має бути рівно 19 символів у форматі +38 (XXX) XXX-XX-XX');
+                return;
+            }
             orderModal.classList.add('hidden');
 
             const formData = new FormData(orderForm);
             try {
-                const res = await fetch('https://musor.totalvtor.od.ua/newBid', {
+                const res = await fetch('/newBid', {
                     method: 'POST',
-                    body: formData
+                    headers: {
+                        'CSRF-Token': csrfToken
+                    },
+                    body: formData,
+                    credentials: 'include'
                 });
 
                 if (res.status === 429) {

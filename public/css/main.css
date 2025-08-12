@@ -1,242 +1,129 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-
-@media (min-width: 1024px) {
-    header {
-        justify-content: space-between;
-    }
-
-    .btn-group {
-        margin-right: 40px;
-    }
-}
-
-@media (max-width: 768px) {
-    nav ul {
-        justify-content: space-between;
-    }
-
-    nav ul .left, nav ul .right {
-        display: flex;
-        flex-direction: column;
-        width: 50%;
-    }
-}
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
 
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+    font-family: 'Montserrat', sans-serif;
 }
 
-.main {
-    display: flex;
-    flex-wrap: wrap;
-    max-width: 100%;
-    max-height: 100%;
-    background-color: #fff;
+.gradient-bg {
+    background: linear-gradient(135deg, #2e7d32, #4caf50);
 }
 
-.content {
-    padding: 20px;
-    flex-grow: 1;
-}
-.content h1 {
-    /* color: #f05a28; */
-    color: red;
-    font-size: 1.5rem;
-}
-.content p {
-    line-height: 1.6;
+.container-pattern {
+    background-image: url('https://zavodperm.ru/storage/photo/resized/xy_800x600/a/mgghdgj56664zgl_1020dad6.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: rgba(255,255,255,0.9);
+    background-blend-mode: overlay;
 }
 
-nav {
-    background: transparent;
-}
-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-}
-nav ul li {
-    margin: 0 15px;
-}
-nav ul li a {
-    font-family: 'Roboto', sans-serif;
-    display: inline-block;
-    padding: 10px 20px; 
-    text-decoration: none; 
-    color: black;
-    transition: all 0.3s; 
-    font-weight: 500;
-}
-
-nav ul li a:not(.btn-left, .btn-right):hover {
-    color: green;
-}
-
-.zamovyty-vyviz {
-    background-color: green;
-    border-radius: 10px;
-}
-
-.btn-group {
-    display: flex;
-    overflow: hidden;
-}
-
-/* Левая кнопка с диагональным правым краем */
-.btn-left {
-    background-color: orange;
-    color: black;
-    clip-path: polygon(0 0, 92% 0, 100% 100%, 0 100%);
-    margin-right: -10px;
-}
-
-/* Правая кнопка с диагональным левым краем */
-.btn-right {
-    background-color: black;
-    color: white;
-    padding: 10px 20px;
-    clip-path: polygon(0 0, 100% 0%, 100% 100%, 20% 100%);
-}
-
-/* Hover-эффекты */
-.btn-left:hover {
-    color: white;
-    background-color: black;
-}
-
-.btn-right:hover {
-    color: black;
-    background-color: orange;
-}
-
-header {
-    display: flex;
-    align-items: center;
-    padding: 20px 40px;
-    color: #fff;
-    background-color: lightgray;
-    width: 100%;
-    height: 5%;
-}
-
-.gradient {
+.hero-image-container {
     position: relative;
-    max-width: 100%;
-    background: radial-gradient(circle at 85% 75%,
-        #fff7ed 0%,
-        #ff9d00 40%
-    );
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    height: 400px;
-    width: 100%;
 }
 
-/* .gradient .layoutImage {
-    position: absolute;
-    background-image: url(../img/background.jpg);
-    background-size: 100% 100%;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 30%;
-    z-index: -1;
-} */
-
-
-.logo-container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    top: 10px;
-    /* background-color: rgba(253, 53, 3, 0.7);
-    border-radius: 3px; */
-}
-
-.logo {
-    width: 100px;
-    height: 100px;
-    object-fit: cover; 
-    border-radius: 50%;
-}
-
-.company-name {
-    text-align: center;
+.hero-icon {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-family: "Russo One", serif;
-    font-size: 50px;
-    font-weight: bold;
-    margin: 0;
-    color: black;
+    background: white;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
-.half-overlay {
-    position: absolute;
-    top: 400px; /* стартуем от низа header */
-    left: 50%;
-    width: 50%;
-    height: 30%;
-    transform: translate(-50%, -50%);
-    background: transparent;
-    border-radius: 20px;
-    z-index: 5;
+
+.impact-box {
+    transition: all 0.3s ease;
+}
+
+.impact-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(21, 255, 0, 0.2);
+}
+
+.container-card {
+    transition: all 0.3s ease;
+}
+
+.container-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.mobile-menu {
+    transition: all 0.3s ease;
+    max-height: 0;
     overflow: hidden;
 }
 
-/*
-.half-overlay-left-image {
-    position: absolute;
-    background-image: url(https://chatgpt.com/backend-api/public_content/enc/eyJpZCI6Im1fNjg3ZmM4Zjk1MGU0ODE5MTkzYzc3NGY5ODRkNzA0YzA6ZmlsZV8wMDAwMDAwMGIxZTA2MjQ2YTkzMzNkODQwNmExMzM3OSIsInRzIjoiNDg3MDAxIiwicCI6InB5aSIsInNpZyI6IjcwZGYwYjczMDIxNGI4ZmIxMzA5MWQ4NzBmZDc3Njc1MzcwOGUwNjg4ZWZiOTk4NzNlODgzOTNkZTY3OGNiYWEiLCJ2IjoiMCIsImdpem1vX2lkIjpudWxsfQ==);
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    left: 0;
-    top: 0;
-    width: 50%;
-    height: 100%;
-    clip-path: polygon(0 0, 90% 0, 100% 100%, 0 100%);
+.mobile-menu.active {
+    max-height: 500px;
 }
 
-.half-overlay-central-icon {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    background-color: rgb(255, 102, 0);
-    border-radius: 50%;
-    border: 10px solid white;
-    width: 60px;
-    height: 60px;
-    z-index: 3;
-    transform: translate(-50%, -50%);
-    align-items: center;
-    text-align: center;
-    font-size: 10px;
+@media (max-width: 767.9px) {
+    .mobile-menu .flex.w-full {
+        width: 80%;
+        margin: 0 auto;
+    }
+    .mobile-menu a:not(.gradient-bg):not(.bg-black) {
+        width: 80%;
+        text-align: center;
+        padding: 12px 0;
+    }
+
+    .desktop-menu {
+        display: none;
+        opacity: 0;
+    }
+    .aboutus-phones {
+        display: none !important;
+    }
+    
 }
 
-.half-overlay-central-icon i {
-    font-size: 40px;
-    margin-top: 7px;
-    color: white;
+@media (max-width: 500px) {
+    .telephones-mobile-notmain {
+        display: none;
+    }
 }
 
+@media (max-width: 1279.9px) {
+    .telephones {
+        display: none;
+    }
 
-.half-overlay-right-image {
-    position: absolute;
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    background-image: url(https://chatgpt.com/backend-api/public_content/enc/eyJpZCI6Im1fNjg3ZmNjNWFmYjY4ODE5MWEzODZjYTcyZTE4NGM4ZDc6ZmlsZV8wMDAwMDAwMDhiYjA2MjQ2OGEyNDYyNWQ5OTFlY2FmYyIsInRzIjoiNDg3MDAxIiwicCI6InB5aSIsInNpZyI6IjNjNTFmMmQ3YzhkYzgxOWZjYmY0NDU4OWRjMmVjODQxZGMzZGY1N2YzODM4ZjU4MDRjZjZiZTIxOWE1YmI2YzgiLCJ2IjoiMCIsImdpem1vX2lkIjpudWxsfQ==);
-    right: 0;
-    top: 0;
-    width: 50%;
-    height: 100%;
-    clip-path: polygon(0 0, 100% 0%, 100% 100%, 10% 100%);
+    
 }
 
-*/
+@media (min-width: 1280px) {
+    .aboutus i {
+        display: none;
+    }
+}
 
+@media (min-width: 768px) and (max-width: 1023.9px) {
+    .logo-triangle img {
+        width: 3.5rem;
+    }
+    .aboutus {
+        font-size: 10px;
+        text-align: center;
+        white-space: nowrap;
+    }
+}
+
+/* Modal animations */
+#orderModal, #verifyModal, #successMessage {
+    transition: opacity 0.3s ease;
+}
+
+.hidden {
+    display: none;
+    opacity: 0;
+}
